@@ -4,7 +4,7 @@ const isUniq = (element, index, arr) => arr.indexOf(element) === index;
 const isEven = (element) => element % 2 === 0;
 
 // создает функию которая добаляет елемнт в массив при значении true callback функции
-function filterArray (array, cb) {
+const  filterArray = function (array, cb) {
   const numbers = [];
   for(let i = 0; i < array.length; i += 1) {
     const element = array[i];
