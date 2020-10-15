@@ -1,9 +1,13 @@
 const inventory = {
-  items: ['Knife', 'Gas mask'],
+    items: ['Knife', 'Gas mask'],
+    // создаем функцию которая примает новое имя и добавляет его в массив items
+    // и возвращает шаблонную строку
   add(itemName) {
     this.items.push(itemName);
     return `Adding ${itemName} to inventory`;
-  },
+    },
+    // создаем функцию которая примает новое имя и удаляет его из массива items
+    // и возвращает шаблонную строку
   remove(itemName) {
     this.items = this.items.filter(item => item !== itemName);
     return `Removing ${itemName} from inventory`;
@@ -11,35 +15,34 @@ const inventory = {
 };
 
 const invokeInventoryAction = function(itemName, action) {
-  const act =  action(itemName);
-  const msg =  `Invoking action on ${itemName}`;
+  const act = action(itemName);
+  const msg = `Invoking action on ${itemName}`;
   return {act, msg};
 };
 
 const invokeAdd = invokeInventoryAction(
   'Medkit',
-  inventory.add  // Write code in this line
+  inventory.add.bind(inventory)
 );
 const arrayAdd = [...inventory.items];
-/* 
-//console.log(invokeAdd);
+
+console.log(invokeAdd);
 //{ act: 'Adding Medkit to inventory', msg: 'Invoking action on Medkit' }
 
-//console.log(arrayAdd);
+console.log(arrayAdd);
 // ['Knife', 'Gas mask', 'Medkit']
-*/
+
 
 const invokeRemove = invokeInventoryAction(
   'Gas mask',
-  inventory.remove  // Write code in this line
+  inventory.remove.bind(inventory)
 );
 
 const arrayRemove = [...inventory.items];
 
-/* 
-//console.log(invokeRemove);
+console.log(invokeRemove);
 //{ act: 'Removing Gas mask from inventory', msg: 'Invoking action on Gas mask' }
 
-//console.log(arrayRemove);
+console.log(arrayRemove);
 // ['Knife', 'Medkit']
-*/
+
